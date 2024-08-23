@@ -6,6 +6,7 @@ import {
   blastAttackLvList,
   statusSneakAttackLvList,
   teostraBlastPowderLvList,
+  weaponTypeToWeaponName,
 } from "@/constants";
 import {
   blastAttackLvIncrease,
@@ -191,7 +192,7 @@ const Home = () => {
   // #endregion : handlers
 
   // #region : effects
-  useEffect(() => {}, [watch]);
+  useEffect(() => {}, []);
   // #endregion : effects
 
   return (
@@ -207,8 +208,11 @@ const Home = () => {
             <FormSection>
               <label htmlFor="weapon-type">무기 종류</label>
               <select {...register("weaponType")} id="weapon-type">
-                <option value={WeaponType.LongSword}>태도</option>
-                <option value={WeaponType.Bow}>활</option>
+                {Object.keys(weaponTypeToWeaponName).map((weaponType) => (
+                  <option value={weaponType} key={`weapon-type-${weaponType}`}>
+                    {weaponTypeToWeaponName[weaponType as WeaponType]}
+                  </option>
+                ))}
               </select>
             </FormSection>
             <FormSection>

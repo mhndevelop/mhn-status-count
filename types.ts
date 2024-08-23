@@ -1,6 +1,9 @@
 export enum WeaponType {
   LongSword = "longSword",
   Bow = "bow",
+  GreatSword = "greatSword",
+  Hammer = "hammer",
+  SwordShield = "swordShield",
 }
 
 export type MonsterName =
