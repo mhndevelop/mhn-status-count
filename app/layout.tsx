@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Next.js Basic Template",
-  description: "This is a basic template for Next.js with TypeScript.",
+  title: "폭최몇",
+  description: "아 됐고 폭파 몇번 터지냐고",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -12,7 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body
+        suppressHydrationWarning={true}
+        style={{ backgroundColor: "#222", color: "#fff" }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
