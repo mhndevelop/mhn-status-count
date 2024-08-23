@@ -330,6 +330,8 @@ export const weaponTypeBlastCoef: WeaponTypeBlastCoef = {
   [WeaponType.GreatSword]: 2.0,
   [WeaponType.Hammer]: 1.6,
   [WeaponType.SwordShield]: 1.0,
+  [WeaponType.Lance]: 1.3,
+  [WeaponType.ChargeBlade]: 1.3,
 };
 
 export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
@@ -338,6 +340,8 @@ export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
   [WeaponType.GreatSword]: 0.47, // 35 / 75
   [WeaponType.SwordShield]: 1.6, // 130 / 75
   [WeaponType.Hammer]: 0.67, // 50 / 75
+  [WeaponType.Lance]: 0.93, // 70 / 75
+  [WeaponType.ChargeBlade]: 0.73, // 55 / 75
 };
 
 export const teostraBlastPowderLvProbabilityIncrease = {

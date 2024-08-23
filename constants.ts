@@ -10,4 +10,6 @@ export const weaponTypeToWeaponName = {
   [WeaponType.GreatSword]: "대검",
   [WeaponType.Hammer]: "해머",
   [WeaponType.SwordShield]: "한손검",
+  [WeaponType.Lance]: "랜스",
+  [WeaponType.ChargeBlade]: "차지액스",
 };

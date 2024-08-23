@@ -4,6 +4,8 @@ export enum WeaponType {
   GreatSword = "greatSword",
   Hammer = "hammer",
   SwordShield = "swordShield",
+  Lance = "lance",
+  ChargeBlade = "chargeBlade",
 }
 
 export type MonsterName =

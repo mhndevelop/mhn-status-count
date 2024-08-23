@@ -305,7 +305,7 @@ const Home = () => {
               <dd>{cumulativeBlastValue}</dd>
             </dl>
             <dl>
-              <dt>최대 폭파 횟수:</dt>
+              <dt>기대 폭파 횟수:</dt>
               <dd>{blastCount}번</dd>
             </dl>
             <dl>
