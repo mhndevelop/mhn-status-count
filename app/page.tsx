@@ -149,6 +149,7 @@ const Home = () => {
       ];
     let currentBlastHits = 0;
     let currentCumulativeBlastValue = 0;
+
     for (let index = 0; index < numberOfBlastHits; index++) {
       const currentBlastResist = Math.floor(
         targetMonsterInitialBlastResistanceValue *

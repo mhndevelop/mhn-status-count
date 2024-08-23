@@ -334,7 +334,7 @@ export const weaponTypeBlastCoef: WeaponTypeBlastCoef = {
 
 export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
   [WeaponType.LongSword]: 1, // 75 / 75
-  [WeaponType.Bow]: 1.87, // 140 / 75
+  [WeaponType.Bow]: 2, // 150 / 75
   [WeaponType.GreatSword]: 0.47, // 35 / 75
   [WeaponType.SwordShield]: 1.6, // 130 / 75
   [WeaponType.Hammer]: 0.67, // 50 / 75
