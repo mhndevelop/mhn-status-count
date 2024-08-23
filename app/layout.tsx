@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "폭최몇",
@@ -20,6 +21,7 @@ export default function RootLayout({
         style={{ backgroundColor: "#222", color: "#fff" }}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
