@@ -1,3 +1,8 @@
+export enum NavItem {
+  Blast = "blast",
+  Sleep = "sleep",
+}
+
 export enum WeaponType {
   LongSword = "longSword",
   Bow = "bow",
@@ -6,6 +11,7 @@ export enum WeaponType {
   SwordShield = "swordShield",
   Lance = "lance",
   ChargeBlade = "chargeBlade",
+  LightBowgun = "lightBowgun",
 }
 
 export type MonsterName =
@@ -38,7 +44,7 @@ export type MonsterName =
   | "푸루푸루"
   | "타마미츠네";
 
-export type MonsterBlastResistanceData = {
+export type MonsterStatusResistanceData = {
   [monsterName in MonsterName]: {
     "8": number;
     "9": number;
@@ -54,7 +60,7 @@ export type MonsterHPData = {
   };
 };
 
-export type WeaponTypeBlastCoef = {
+export type WeaponTypeStatusCoef = {
   [weaponType in WeaponType]: number;
 };
 
