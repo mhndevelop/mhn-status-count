@@ -471,6 +471,149 @@ export const monsterSleepInitialResistanceData: MonsterStatusResistanceData = {
     "10": 4922,
   },
 };
+
+export const monsterPoisonInitialResistanceData: MonsterStatusResistanceData = {
+  도스쟈그라스: {
+    "8": 3655,
+    "9": 4219,
+    "10": 4680,
+  },
+  쿠루루야크: {
+    "8": 4752,
+    "9": 5485,
+    "10": 6084,
+  },
+  푸케푸케: {
+    "8": 7310,
+    "9": 8438,
+    "10": 9360,
+  },
+  "푸케푸케 아종": {
+    "8": 3956,
+    "9": 4403,
+    "10": 4874,
+  },
+  볼보로스: {
+    "8": 3780,
+    "9": 4265,
+    "10": 4728,
+  },
+  도스기르오스: {
+    "8": 4914,
+    "9": 5545,
+    "10": 6147,
+  },
+  토비카가치: {
+    "8": 3780,
+    "9": 4311,
+    "10": 4777,
+  },
+  파오우르무: {
+    "8": 4971,
+    "9": 5545,
+    "10": 6147,
+  },
+  "파오우르무 아종": {
+    "8": 4971,
+    "9": 5605,
+    "10": 6210,
+  },
+  쥬라토도스: {
+    "8": 4971,
+    "9": 5605,
+    "10": 6210,
+  },
+  안쟈나프: {
+    "8": 5028,
+    "9": 5664,
+    "10": 6273,
+  },
+  리오레이아: {
+    "8": 7736,
+    "9": 8715,
+    "10": 9650,
+  },
+  "리오레이아 아종": {
+    "8": 7823,
+    "9": 8807,
+    "10": 9747,
+  },
+  레이기에나: {
+    "8": 2769,
+    "9": 3115,
+    "10": 3445,
+  },
+  디아블로스: {
+    "8": 5142,
+    "9": 5784,
+    "10": 6399,
+  },
+  "디아블로스 아종": {
+    "8": 5313,
+    "9": 5904,
+    "10": 6462,
+  },
+  리오레우스: {
+    "8": 7911,
+    "9": 8899,
+    "10": 9844,
+  },
+  "리오레우스 아종": {
+    "8": 7999,
+    "9": 8991,
+    "10": 9941,
+  },
+  라도발킨: {
+    "8": 4914,
+    "9": 5545,
+    "10": 6147,
+  },
+  버프바로: {
+    "8": 4971,
+    "9": 5545,
+    "10": 6147,
+  },
+  벨리오로스: {
+    "8": 4971,
+    "9": 5545,
+    "10": 6147,
+  },
+  진오우거: {
+    "8": 5028,
+    "9": 5605,
+    "10": 6336,
+  },
+  치치야크: {
+    "8": 3655,
+    "9": 4219,
+    "10": 4680,
+  },
+  오도가론: {
+    "8": 7648,
+    "9": 8530,
+    "10": 9457,
+  },
+  이블죠: {
+    "8": 2707,
+    "9": 3050,
+    "10": 3378,
+  },
+  바살모스: {
+    "8": 3780,
+    "9": 4219,
+    "10": 4728,
+  },
+  푸루푸루: {
+    "8": 2646,
+    "9": 2986,
+    "10": 3310,
+  },
+  타마미츠네: {
+    "8": 3956,
+    "9": 4450,
+    "10": 4922,
+  },
+};
 // #endregion : monster registance data
 
 // #region : weapon data
@@ -481,6 +624,7 @@ export const weaponTypeBlastCoef: WeaponTypeStatusCoef = {
   [WeaponType.Hammer]: 1.6,
   [WeaponType.SwordShield]: 1.0,
   [WeaponType.Lance]: 1.3,
+  [WeaponType.GunLance]: 0,
   [WeaponType.ChargeBlade]: 1.3,
   [WeaponType.LightBowgun]: 0,
 };
@@ -492,6 +636,19 @@ export const weaponTypeSleepCoef: WeaponTypeStatusCoef = {
   [WeaponType.Hammer]: 1.6,
   [WeaponType.SwordShield]: 1.0,
   [WeaponType.Lance]: 1.3,
+  [WeaponType.GunLance]: 0,
+  [WeaponType.ChargeBlade]: 0,
+  [WeaponType.LightBowgun]: 3.0,
+};
+
+export const weaponTypePoisonCoef: WeaponTypeStatusCoef = {
+  [WeaponType.LongSword]: 1.4,
+  [WeaponType.Bow]: 1.0,
+  [WeaponType.GreatSword]: 2.0,
+  [WeaponType.Hammer]: 1.6,
+  [WeaponType.SwordShield]: 1.0,
+  [WeaponType.Lance]: 1.3,
+  [WeaponType.GunLance]: 1.5,
   [WeaponType.ChargeBlade]: 0,
   [WeaponType.LightBowgun]: 3.0,
 };
@@ -503,6 +660,7 @@ export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
   [WeaponType.SwordShield]: 1.6, // 130 / 75
   [WeaponType.Hammer]: 0.67, // 50 / 75
   [WeaponType.Lance]: 0.93, // 70 / 75
+  [WeaponType.GunLance]: 0.73, // 55 / 75
   [WeaponType.ChargeBlade]: 0.73, // 55 / 75
   [WeaponType.LightBowgun]: 0, // 추정 불가, 메인 코드에서 별도의 추정 타수로 계산
 };
@@ -560,3 +718,14 @@ export const lightBowgunSleepValueByGrade = {
 
 export const lightBowGunSleepHitsCoef = 0.28; // 21 / 75
 // #endregion : sleep
+
+// #region : poison
+export const poisonAttackLvIncrease = {
+  "0": 0,
+  "1": 50,
+  "2": 75,
+  "3": 100,
+  "4": 125,
+  "5": 150,
+};
+// #endregion : poison

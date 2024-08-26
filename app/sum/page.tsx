@@ -139,7 +139,8 @@ export default function Page() {
     const numberOfSleepHits =
       watch("weaponType") !== WeaponType.LightBowgun
         ? Math.floor(
-            numberOfHits * ((33 + totalSleepProbabilityIncrease) / 100)
+            numberOfHits *
+              (Math.min(100, 33 + totalSleepProbabilityIncrease) / 100)
           )
         : numberOfHits;
     const estimatedCumulativeValue =

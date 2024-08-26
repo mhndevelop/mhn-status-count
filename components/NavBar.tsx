@@ -23,6 +23,13 @@ const NavBar = (props: { activeItem: NavItem }) => {
       <nav id="main-nav">
         <NavBarButtonList>
           <li>
+            <Link href="/doc">
+              <NavButton $isActive={props.activeItem === NavItem.Poison}>
+                독
+              </NavButton>
+            </Link>
+          </li>
+          <li>
             <Link href="/pok">
               <NavButton $isActive={props.activeItem === NavItem.Blast}>
                 폭파
