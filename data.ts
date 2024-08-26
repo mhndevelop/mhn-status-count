@@ -504,7 +504,7 @@ export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
   [WeaponType.Hammer]: 0.67, // 50 / 75
   [WeaponType.Lance]: 0.93, // 70 / 75
   [WeaponType.ChargeBlade]: 0.73, // 55 / 75
-  [WeaponType.LightBowgun]: 0, // 추정 불가, 추정 사이클로 계산
+  [WeaponType.LightBowgun]: 0, // 추정 불가, 메인 코드에서 별도의 추정 타수로 계산
 };
 // #endregion : weapon data
 
@@ -558,5 +558,5 @@ export const lightBowgunSleepValueByGrade = {
   "10": 240,
 };
 
-export const lightBowGunSleepHitsCoef = 0.24; // 18 / 75
+export const lightBowGunSleepHitsCoef = 0.28; // 21 / 75
 // #endregion : sleep
