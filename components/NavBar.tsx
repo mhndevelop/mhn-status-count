@@ -43,6 +43,13 @@ const NavBar = (props: { activeItem: NavItem }) => {
               </NavButton>
             </Link>
           </li>
+          <li>
+            <Link href="/mab">
+              <NavButton $isActive={props.activeItem === NavItem.Paralysis}>
+                마비
+              </NavButton>
+            </Link>
+          </li>
         </NavBarButtonList>
       </nav>
     </>

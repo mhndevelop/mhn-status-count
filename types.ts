@@ -2,6 +2,7 @@ export enum NavItem {
   Blast = "blast",
   Sleep = "sleep",
   Poison = "poison",
+  Paralysis = "paralysis",
 }
 
 export enum WeaponType {

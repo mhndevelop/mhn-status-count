@@ -27,3 +27,7 @@ export const sleepAttackLvList = [0, 1, 2, 3, 4, 5];
 // #region : sleep
 export const poisonAttackLvList = [0, 1, 2, 3, 4, 5];
 // #endregion : sleep
+
+// #region : paralysis
+export const paralysisAttackLvList = [0, 1, 2, 3, 4, 5];
+// #endregion : paralysis

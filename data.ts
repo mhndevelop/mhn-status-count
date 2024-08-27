@@ -579,8 +579,8 @@ export const monsterPoisonInitialResistanceData: MonsterStatusResistanceData = {
     "10": 6147,
   },
   진오우거: {
-    "8": 5028,
-    "9": 5605,
+    "8": 5085,
+    "9": 5724,
     "10": 6336,
   },
   치치야크: {
@@ -614,6 +614,150 @@ export const monsterPoisonInitialResistanceData: MonsterStatusResistanceData = {
     "10": 4922,
   },
 };
+
+export const monsterParalysisInitialResistanceData: MonsterStatusResistanceData =
+  {
+    도스쟈그라스: {
+      "8": 3655,
+      "9": 4219,
+      "10": 4680,
+    },
+    쿠루루야크: {
+      "8": 3655,
+      "9": 4219,
+      "10": 4680,
+    },
+    푸케푸케: {
+      "8": 3655,
+      "9": 4219,
+      "10": 4680,
+    },
+    "푸케푸케 아종": {
+      "8": 3956,
+      "9": 4403,
+      "10": 4874,
+    },
+    볼보로스: {
+      "8": 3780,
+      "9": 4265,
+      "10": 4728,
+    },
+    도스기르오스: {
+      "8": 4914,
+      "9": 5545,
+      "10": 6147,
+    },
+    토비카가치: {
+      "8": 3780,
+      "9": 4311,
+      "10": 4777,
+    },
+    파오우르무: {
+      "8": 3824,
+      "9": 4265,
+      "10": 4728,
+    },
+    "파오우르무 아종": {
+      "8": 3868,
+      "9": 4357,
+      "10": 4825,
+    },
+    쥬라토도스: {
+      "8": 3824,
+      "9": 4311,
+      "10": 4777,
+    },
+    안쟈나프: {
+      "8": 3868,
+      "9": 4357,
+      "10": 4825,
+    },
+    리오레이아: {
+      "8": 3868,
+      "9": 4357,
+      "10": 4825,
+    },
+    "리오레이아 아종": {
+      "8": 3912,
+      "9": 4403,
+      "10": 4874,
+    },
+    레이기에나: {
+      "8": 3956,
+      "9": 4450,
+      "10": 4922,
+    },
+    디아블로스: {
+      "8": 2796,
+      "9": 3115,
+      "10": 3445,
+    },
+    "디아블로스 아종": {
+      "8": 2861,
+      "9": 3179,
+      "10": 3479,
+    },
+    리오레우스: {
+      "8": 3956,
+      "9": 4450,
+      "10": 4922,
+    },
+    "리오레우스 아종": {
+      "8": 4000,
+      "9": 4496,
+      "10": 4970,
+    },
+    라도발킨: {
+      "8": 3780,
+      "9": 4265,
+      "10": 4728,
+    },
+    버프바로: {
+      "8": 3824,
+      "9": 4265,
+      "10": 4728,
+    },
+    벨리오로스: {
+      "8": 3956,
+      "9": 4450,
+      "10": 4922,
+    },
+    진오우거: {
+      "8": 5085,
+      "9": 5724,
+      "10": 6336,
+    },
+    치치야크: {
+      "8": 4752,
+      "9": 5485,
+      "10": 6084,
+    },
+    오도가론: {
+      "8": 2677,
+      "9": 2986,
+      "10": 3310,
+    },
+    이블죠: {
+      "8": 3868,
+      "9": 4357,
+      "10": 4825,
+    },
+    바살모스: {
+      "8": 3780,
+      "9": 4219,
+      "10": 4728,
+    },
+    푸루푸루: {
+      "8": 4914,
+      "9": 5545,
+      "10": 6147,
+    },
+    타마미츠네: {
+      "8": 3956,
+      "9": 4450,
+      "10": 4922,
+    },
+  };
 // #endregion : monster registance data
 
 // #region : weapon data
@@ -648,6 +792,18 @@ export const weaponTypePoisonCoef: WeaponTypeStatusCoef = {
   [WeaponType.Hammer]: 1.6,
   [WeaponType.SwordShield]: 1.0,
   [WeaponType.Lance]: 1.3,
+  [WeaponType.GunLance]: 1.5,
+  [WeaponType.ChargeBlade]: 1.3,
+  [WeaponType.LightBowgun]: 0,
+};
+
+export const weaponTypeParalysisCoef: WeaponTypeStatusCoef = {
+  [WeaponType.LongSword]: 0,
+  [WeaponType.Bow]: 1.0,
+  [WeaponType.GreatSword]: 2.0,
+  [WeaponType.Hammer]: 1.6,
+  [WeaponType.SwordShield]: 1.0,
+  [WeaponType.Lance]: 0,
   [WeaponType.GunLance]: 1.5,
   [WeaponType.ChargeBlade]: 1.3,
   [WeaponType.LightBowgun]: 0,
@@ -1005,6 +1161,122 @@ export const sleepWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
     },
   ],
 };
+
+export const paralysisWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
+  [WeaponType.SwordShield]: [
+    {
+      name: "swordShieldNormal",
+      text: "평타 위주",
+      hps: 1.3, // 100 / 75
+    },
+    {
+      name: "swordShieldBackDashFallBash",
+      text: "백대시 폴배시",
+      hps: 1.07, // 80 / 75
+    },
+  ],
+  [WeaponType.LongSword]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.Bow]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.GreatSword]: [
+    {
+      name: "greatSwordFastTackle",
+      text: "빠른 태클 반복",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "greatSwordCharging",
+      text: "모아베기",
+      hps: 0.32, // 24 / 75
+    },
+    {
+      name: "greatSwordPerfectEvadeAttack",
+      text: "저스트 회피 공격",
+      hps: 0.32, // 24 / 75
+    },
+  ],
+  [WeaponType.Hammer]: [
+    {
+      name: "hammerNormal",
+      text: "평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "hammerCharging",
+      text: "차지 위주",
+      hps: 0.47, // 35 / 75
+    },
+  ],
+  [WeaponType.Lance]: [
+    {
+      name: "",
+      text: "",
+      hps: 0, // 88 / 75
+    },
+  ],
+  [WeaponType.GunLance]: [
+    {
+      name: "gunLanceSlash",
+      text: "참격 위주",
+      hps: 0.8, // 60 / 75
+    },
+    {
+      name: "gunLanceWyrmstakeCannon",
+      text: "용항포 위주",
+      hps: 1.07, // 80 / 75
+    },
+    {
+      name: "gunLanceSlashAndShelling",
+      text: "참격반 포격반",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "gunLanceFullBurst",
+      text: "풀버스트 위주",
+      hps: 0.6, // 45 / 75
+    },
+  ],
+  [WeaponType.ChargeBlade]: [
+    {
+      name: "chargeBladeGuardPointAmpedDischarge",
+      text: "가포 고출력",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "chargeBladeSuperAmpedDischarge",
+      text: "초고출력 위주",
+      hps: 0.6, // 45 / 75
+    },
+    {
+      name: "chargeBladeAxeModeNormal",
+      text: "도끼모드 평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "chargeBladeOnlySwordMode",
+      text: "오직 검모드 평타",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.LightBowgun]: [
+    {
+      name: "",
+      text: "",
+      hps: 0, // 60 / 75
+    },
+  ],
+};
 // #endregion : weapon data
 
 // #region : common status data
@@ -1062,6 +1334,17 @@ export const lightBowGunSleepHitsCoef = 0.28; // 21 / 75
 
 // #region : poison
 export const poisonAttackLvIncrease = {
+  "0": 0,
+  "1": 50,
+  "2": 75,
+  "3": 100,
+  "4": 125,
+  "5": 150,
+};
+// #endregion : poison
+
+// #region : poison
+export const paralysisAttackLvIncrease = {
   "0": 0,
   "1": 50,
   "2": 75,
