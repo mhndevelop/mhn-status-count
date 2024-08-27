@@ -1145,17 +1145,17 @@ export const sleepWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
   ],
   [WeaponType.LightBowgun]: [
     {
-      name: "",
+      name: "lightBowgunManySleepAmmo",
       text: "수면탄 저회장전 많음(5~6회)",
       hps: 0.4, // (12+18) / 75
     },
     {
-      name: "",
+      name: "lightBowgunNormalSleepAmmo",
       text: "수면탄 저회장전 보통(3~4회)",
       hps: 0.32, // (15+9) / 75
     },
     {
-      name: "",
+      name: "lightBowgunFewSleepAmmo",
       text: "수면탄 저회장전 적음(0~2회)",
       hps: 0.24, // 18 / 75
     },
