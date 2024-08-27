@@ -13,6 +13,7 @@ import {
   statusSneakAttackLvProbabilityIncrease,
   weaponTypePoisonCoef,
   poisonWeaponHitsPerSecond,
+  monsterHPdata,
 } from "@/data";
 import { MonsterName, WeaponType } from "@/types";
 import { generatePoisonResistValue } from "@/utils";
@@ -102,6 +103,7 @@ export default function Page() {
   // #region : states
   const [cumulativePoisonValue, setCumulativePoisonValue] = useState(0);
   const [poisonCount, setPoisonCount] = useState(0);
+  const [poisonDamage, setPoisonDamage] = useState(0);
   // #endregion : states
 
   // #region : react hook form
@@ -184,6 +186,12 @@ export default function Page() {
     }
     console.log(`${currentPoisonOccurs}번 독 가능`);
     setPoisonCount(currentPoisonOccurs);
+
+    const totalDamage =
+      Math.floor(
+        monsterHPdata[watch("monsterName")][watch("monsterGrade")] * 0.1
+      ) * currentPoisonOccurs;
+    setPoisonDamage(totalDamage);
     console.log("----------------------------------------------------");
     console.log("------------------------계산끝------------------------");
     console.log("----------------------------------------------------");
@@ -317,6 +325,24 @@ export default function Page() {
             <dl>
               <dt>기대 독 횟수:</dt>
               <dd>{poisonCount}번</dd>
+            </dl>
+            <dl>
+              <dt>몬스터 체력:</dt>
+              <dd>
+                {monsterHPdata?.[watch("monsterName")]?.[watch("monsterGrade")]
+                  ? monsterHPdata?.[watch("monsterName")]?.[
+                      watch("monsterGrade")
+                    ]
+                  : 0}
+              </dd>
+            </dl>
+            <dl>
+              <dt>총 독 데미지:</dt>
+              <dd>{poisonDamage}</dd>
+            </dl>
+            <dl>
+              <dt>독 데미지 비율:</dt>
+              <dd>{10 * poisonCount}%</dd>
             </dl>
           </Result>
         </div>
