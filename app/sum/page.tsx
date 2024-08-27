@@ -12,13 +12,13 @@ import {
   monsterNames,
   statusSneakAttackLvProbabilityIncrease,
   weaponTypeSleepCoef,
-  weaponTypeHitsPerSecond,
+  sleepWeaponHitsPerSecond,
   lightBowgunSleepValueByGrade,
   lightBowGunSleepHitsCoef,
 } from "@/data";
 import { MonsterName, WeaponType } from "@/types";
 import { generateSleepResistValue } from "@/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 // #endregion : imports
@@ -26,6 +26,7 @@ import styled from "styled-components";
 // #region : types
 interface Inputs {
   weaponType: WeaponType;
+  playStyle: string;
   sleepValue: number;
   lightBowgunGrade: "5" | "6" | "7" | "8" | "9" | "10";
   monsterGrade: "8" | "9" | "10";
@@ -111,8 +112,14 @@ export default function Page() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      weaponType: WeaponType.Bow,
+      huntingTime: 75,
+    },
+  });
   // #endregion : react hook form
 
   // #region : handlers
@@ -125,10 +132,13 @@ export default function Page() {
       watch("weaponType") !== WeaponType.LightBowgun
         ? watch("sleepValue")
         : lightBowgunSleepValueByGrade[watch("lightBowgunGrade")];
-    const numberOfHits =
-      watch("weaponType") !== WeaponType.LightBowgun
-        ? watch("huntingTime") * weaponTypeHitsPerSecond[watch("weaponType")]
-        : Math.floor(watch("huntingTime") * lightBowGunSleepHitsCoef);
+    const targetHitsPerSecondIndex = sleepWeaponHitsPerSecond[
+      watch("weaponType")
+    ].findIndex((item) => item.name === watch("playStyle"));
+    const hitsPerSecond =
+      sleepWeaponHitsPerSecond[watch("weaponType")][targetHitsPerSecondIndex]
+        .hps;
+    const numberOfHits = Math.floor(watch("huntingTime") * hitsPerSecond);
     const totalSleepProbabilityIncrease = Math.min(
       100,
       statusSneakAttackLvProbabilityIncrease[watch("statusSneakAttackLv")]
@@ -143,6 +153,7 @@ export default function Page() {
               (Math.min(100, 33 + totalSleepProbabilityIncrease) / 100)
           )
         : numberOfHits;
+
     const estimatedCumulativeValue =
       coefAppliedTotalSleepValue * numberOfSleepHits;
     setCumulativeSleepValue(estimatedCumulativeValue);
@@ -191,6 +202,15 @@ export default function Page() {
   };
   // #endregion : handlers
 
+  // #region : effects
+  useEffect(() => {
+    setValue(
+      "playStyle",
+      sleepWeaponHitsPerSecond[watch("weaponType")][0].name
+    );
+  }, [watch("weaponType")]);
+  // #endregino : effects
+
   return (
     <div>
       <Container>
@@ -203,7 +223,8 @@ export default function Page() {
                 {Object.keys(weaponTypeToWeaponName).map((weaponType) => {
                   if (
                     weaponType === WeaponType["ChargeBlade"] ||
-                    weaponType === WeaponType["LongSword"]
+                    weaponType === WeaponType["LongSword"] ||
+                    weaponType === WeaponType["GunLance"]
                   ) {
                     return null;
                   } else {
@@ -217,6 +238,22 @@ export default function Page() {
                     );
                   }
                 })}
+              </select>
+            </FormSection>
+            <FormSection>
+              <label htmlFor="play-style">플레이 스타일</label>
+              <select {...register("playStyle")} id="play-style">
+                {watch("weaponType") &&
+                  sleepWeaponHitsPerSecond[watch("weaponType")].map(
+                    (playStyle) => (
+                      <option
+                        value={playStyle.name}
+                        key={`play-style-${playStyle.name}`}
+                      >
+                        {playStyle.text}
+                      </option>
+                    )
+                  )}
               </select>
             </FormSection>
             {watch("weaponType") !== WeaponType.LightBowgun && (

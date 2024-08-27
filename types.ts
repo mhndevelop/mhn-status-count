@@ -66,6 +66,12 @@ export type WeaponTypeStatusCoef = {
   [weaponType in WeaponType]: number;
 };
 
+export type WeaponHitsPerSecondData = {
+  name: string;
+  text: string;
+  hps: number;
+};
+
 export type WeaponTypeHitsPerSecond = {
-  [weaponType in WeaponType]: number;
+  [weaponType in WeaponType]: WeaponHitsPerSecondData[];
 };

@@ -12,11 +12,11 @@ import {
   monsterNames,
   statusSneakAttackLvProbabilityIncrease,
   weaponTypePoisonCoef,
-  weaponTypeHitsPerSecond,
+  poisonWeaponHitsPerSecond,
 } from "@/data";
 import { MonsterName, WeaponType } from "@/types";
 import { generatePoisonResistValue } from "@/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 // #endregion : imports
@@ -24,6 +24,7 @@ import styled from "styled-components";
 // #region : types
 interface Inputs {
   weaponType: WeaponType;
+  playStyle: string;
   poisonValue: number;
   monsterGrade: "8" | "9" | "10";
   monsterName: MonsterName;
@@ -108,8 +109,14 @@ export default function Page() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      weaponType: WeaponType.LongSword,
+      huntingTime: 75,
+    },
+  });
   // #endregion : react hook form
 
   // #region : handlers
@@ -119,8 +126,13 @@ export default function Page() {
     console.log("------------------------------------------------------");
     const coef = weaponTypePoisonCoef[watch("weaponType")];
     const poisonValue = watch("poisonValue");
-    const numberOfHits =
-      watch("huntingTime") * weaponTypeHitsPerSecond[watch("weaponType")];
+    const targetHitsPerSecondIndex = poisonWeaponHitsPerSecond[
+      watch("weaponType")
+    ].findIndex((item) => item.name === watch("playStyle"));
+    const hitsPerSecond =
+      poisonWeaponHitsPerSecond[watch("weaponType")][targetHitsPerSecondIndex]
+        .hps;
+    const numberOfHits = Math.floor(watch("huntingTime") * hitsPerSecond);
     const totalPoisonProbabilityIncrease = Math.min(
       100,
       statusSneakAttackLvProbabilityIncrease[watch("statusSneakAttackLv")]
@@ -129,8 +141,9 @@ export default function Page() {
       poisonAttackLvIncrease[watch("poisonAttackLv")];
     const totalPoisonValue = +poisonValue + +poisonAttackIncrease;
     const coefAppliedTotalPoisonValue = Math.floor(totalPoisonValue * coef);
-    const numberOfPoisonHits =
-      numberOfHits * (Math.min(100, 33 + totalPoisonProbabilityIncrease) / 100);
+    const numberOfPoisonHits = Math.floor(
+      numberOfHits * (Math.min(100, 33 + totalPoisonProbabilityIncrease) / 100)
+    );
     const estimatedCumulativeValue =
       coefAppliedTotalPoisonValue * numberOfPoisonHits;
     setCumulativePoisonValue(estimatedCumulativeValue);
@@ -179,6 +192,15 @@ export default function Page() {
   };
   // #endregion : handlers
 
+  // #region : effects
+  useEffect(() => {
+    setValue(
+      "playStyle",
+      poisonWeaponHitsPerSecond[watch("weaponType")][0].name
+    );
+  }, [watch("weaponType")]);
+  // #endregino : effects
+
   return (
     <div>
       <Container>
@@ -202,6 +224,22 @@ export default function Page() {
                     );
                   }
                 })}
+              </select>
+            </FormSection>
+            <FormSection>
+              <label htmlFor="play-style">플레이 스타일</label>
+              <select {...register("playStyle")} id="play-style">
+                {watch("weaponType") &&
+                  poisonWeaponHitsPerSecond[watch("weaponType")].map(
+                    (playStyle) => (
+                      <option
+                        value={playStyle.name}
+                        key={`play-style-${playStyle.name}`}
+                      >
+                        {playStyle.text}
+                      </option>
+                    )
+                  )}
               </select>
             </FormSection>
             <FormSection>

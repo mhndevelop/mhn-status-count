@@ -10,16 +10,16 @@ import {
 import {
   blastAttackLvIncrease,
   blastMultiplier,
+  blastWeaponHitsPerSecond,
   monsterBlastInitialResistanceData,
   monsterHPdata,
   monsterNames,
   statusSneakAttackLvProbabilityIncrease,
   teostraBlastPowderLvProbabilityIncrease,
   weaponTypeBlastCoef,
-  weaponTypeHitsPerSecond,
 } from "@/data";
 import { MonsterName, WeaponType } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 // #endregion : imports
@@ -27,6 +27,7 @@ import styled from "styled-components";
 // #region : types
 interface Inputs {
   weaponType: WeaponType;
+  playStyle: string;
   blastValue: number;
   monsterGrade: "8" | "9" | "10";
   monsterName: MonsterName;
@@ -113,8 +114,14 @@ export default function Page() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      weaponType: WeaponType.LongSword,
+      huntingTime: 75,
+    },
+  });
   // #endregion : react hook form
 
   // #region : handlers
@@ -124,8 +131,13 @@ export default function Page() {
     console.log("------------------------------------------------------");
     const coef = weaponTypeBlastCoef[watch("weaponType")];
     const blastValue = watch("blastValue");
-    const numberOfHits =
-      watch("huntingTime") * weaponTypeHitsPerSecond[watch("weaponType")];
+    const targetHitsPerSecondIndex = blastWeaponHitsPerSecond[
+      watch("weaponType")
+    ].findIndex((item) => item.name === watch("playStyle"));
+    const hitsPerSecond =
+      blastWeaponHitsPerSecond[watch("weaponType")][targetHitsPerSecondIndex]
+        .hps;
+    const numberOfHits = Math.floor(watch("huntingTime") * hitsPerSecond);
     const totalBlastProbabilityIncrease = Math.min(
       100,
       teostraBlastPowderLvProbabilityIncrease[watch("teostraBlastPowerLv")] +
@@ -135,7 +147,7 @@ export default function Page() {
     const totalBlastValue = +blastValue + +blastAttackIncrease;
     const coefAppliedTotalBlastValue = Math.floor(totalBlastValue * coef);
     const numberOfBlastHits = Math.floor(
-      numberOfHits * ((33 + totalBlastProbabilityIncrease) / 100)
+      numberOfHits * (Math.min(100, 33 + totalBlastProbabilityIncrease) / 100)
     );
 
     const estimatedCumulativeValue =
@@ -191,6 +203,15 @@ export default function Page() {
   };
   // #endregion : handlers
 
+  // #region : effects
+  useEffect(() => {
+    setValue(
+      "playStyle",
+      blastWeaponHitsPerSecond[watch("weaponType")][0].name
+    );
+  }, [watch("weaponType")]);
+  // #endregino : effects
+
   return (
     <div>
       <Container>
@@ -201,7 +222,10 @@ export default function Page() {
               <label htmlFor="weapon-type">무기 종류</label>
               <select {...register("weaponType")} id="weapon-type">
                 {Object.keys(weaponTypeToWeaponName).map((weaponType) => {
-                  if (weaponType === WeaponType["LightBowgun"]) {
+                  if (
+                    weaponType === WeaponType["LightBowgun"] ||
+                    weaponType === WeaponType["GunLance"]
+                  ) {
                     return null;
                   } else {
                     return (
@@ -214,6 +238,22 @@ export default function Page() {
                     );
                   }
                 })}
+              </select>
+            </FormSection>
+            <FormSection>
+              <label htmlFor="play-style">플레이 스타일</label>
+              <select {...register("playStyle")} id="play-style">
+                {watch("weaponType") &&
+                  blastWeaponHitsPerSecond[watch("weaponType")].map(
+                    (playStyle) => (
+                      <option
+                        value={playStyle.name}
+                        key={`play-style-${playStyle.name}`}
+                      >
+                        {playStyle.text}
+                      </option>
+                    )
+                  )}
               </select>
             </FormSection>
             <FormSection>

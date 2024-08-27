@@ -649,20 +649,361 @@ export const weaponTypePoisonCoef: WeaponTypeStatusCoef = {
   [WeaponType.SwordShield]: 1.0,
   [WeaponType.Lance]: 1.3,
   [WeaponType.GunLance]: 1.5,
-  [WeaponType.ChargeBlade]: 0,
-  [WeaponType.LightBowgun]: 3.0,
+  [WeaponType.ChargeBlade]: 1.3,
+  [WeaponType.LightBowgun]: 0,
 };
 
-export const weaponTypeHitsPerSecond: WeaponTypeHitsPerSecond = {
-  [WeaponType.LongSword]: 1, // 75 / 75
-  [WeaponType.Bow]: 2, // 150 / 75
-  [WeaponType.GreatSword]: 0.47, // 35 / 75
-  [WeaponType.SwordShield]: 1.6, // 130 / 75
-  [WeaponType.Hammer]: 0.67, // 50 / 75
-  [WeaponType.Lance]: 0.93, // 70 / 75
-  [WeaponType.GunLance]: 0.73, // 55 / 75
-  [WeaponType.ChargeBlade]: 0.73, // 55 / 75
-  [WeaponType.LightBowgun]: 0, // 추정 불가, 메인 코드에서 별도의 추정 타수로 계산
+export const poisonWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
+  [WeaponType.SwordShield]: [
+    {
+      name: "swordShieldNormal",
+      text: "평타 위주",
+      hps: 1.3, // 100 / 75
+    },
+    {
+      name: "swordShieldBackDashFallBash",
+      text: "백대시 폴배시",
+      hps: 1.07, // 80 / 75
+    },
+  ],
+  [WeaponType.LongSword]: [
+    {
+      name: "longBladeNormalAndSheath",
+      text: "평타 및 특수납도",
+      hps: 1, // 75 / 75
+    },
+    {
+      name: "longBladeNormal",
+      text: "평타 위주",
+      hps: 1, // 75 / 75
+    },
+  ],
+  [WeaponType.Bow]: [
+    {
+      name: "bowPoison3ChargingSpreadLv4",
+      text: "독활 3차징 확산4렙",
+      hps: 2.08, // 156 / 75
+    },
+  ],
+  [WeaponType.GreatSword]: [
+    {
+      name: "greatSwordFastTackle",
+      text: "빠른 태클 반복",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "greatSwordCharging",
+      text: "모아베기",
+      hps: 0.32, // 24 / 75
+    },
+    {
+      name: "greatSwordPerfectEvadeAttack",
+      text: "저스트 회피 공격",
+      hps: 0.32, // 24 / 75
+    },
+  ],
+  [WeaponType.Hammer]: [
+    {
+      name: "hammerNormal",
+      text: "평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "hammerCharging",
+      text: "차지 위주",
+      hps: 0.47, // 35 / 75
+    },
+  ],
+  [WeaponType.Lance]: [
+    {
+      name: "lanceDash",
+      text: "돌진 위주",
+      hps: 1.17, // 88 / 75
+    },
+    {
+      name: "lanceNormalCounter",
+      text: "평타 및 카운터 찌르기 위주",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.GunLance]: [
+    {
+      name: "gunLanceSlash",
+      text: "참격 위주",
+      hps: 0.8, // 60 / 75
+    },
+    {
+      name: "gunLanceWyrmstakeCannon",
+      text: "용항포 위주",
+      hps: 1.07, // 80 / 75
+    },
+    {
+      name: "gunLanceSlashAndShelling",
+      text: "참격반 포격반",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "gunLanceFullBurst",
+      text: "풀버스트 위주",
+      hps: 0.6, // 45 / 75
+    },
+  ],
+  [WeaponType.ChargeBlade]: [
+    {
+      name: "chargeBladeGuardPointAmpedDischarge",
+      text: "가포 고출력",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "chargeBladeSuperAmpedDischarge",
+      text: "초고출력 위주",
+      hps: 0.6, // 45 / 75
+    },
+    {
+      name: "chargeBladeAxeModeNormal",
+      text: "도끼모드 평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "chargeBladeOnlySwordMode",
+      text: "오직 검모드 평타",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.LightBowgun]: [
+    {
+      name: "",
+      text: "",
+      hps: 0, // 60 / 75
+    },
+  ],
+};
+
+export const blastWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
+  [WeaponType.SwordShield]: [
+    {
+      name: "swordShieldNormal",
+      text: "평타 위주",
+      hps: 1.3, // 100 / 75
+    },
+    {
+      name: "swordShieldBackDashFallBash",
+      text: "백대시 폴배시",
+      hps: 1.07, // 80 / 75
+    },
+  ],
+  [WeaponType.LongSword]: [
+    {
+      name: "longBladeNormalAndSheath",
+      text: "평타 및 특수납도",
+      hps: 1, // 75 / 75
+    },
+    {
+      name: "longBladeNormal",
+      text: "평타 위주",
+      hps: 1, // 75 / 75
+    },
+  ],
+  [WeaponType.Bow]: [
+    {
+      name: "bowTeostra1ChargingPierceLv2",
+      text: "테오활 1차징 관통2렙",
+      hps: 3, // 225 / 75
+    },
+    {
+      name: "bowTeostra2ChargingRapidLv4",
+      text: "테오활 2차징 연사4렙",
+      hps: 2.13, // 160 / 75
+    },
+    {
+      name: "bowTeostra3ChargingSpreadLv4",
+      text: "테오활 3차징 확산4렙",
+      hps: 2.08, // 156 / 75
+    },
+  ],
+  [WeaponType.GreatSword]: [
+    {
+      name: "greatSwordFastTackle",
+      text: "빠른 태클 반복",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "greatSwordCharging",
+      text: "모아베기",
+      hps: 0.32, // 24 / 75
+    },
+    {
+      name: "greatSwordPerfectEvadeAttack",
+      text: "저스트 회피 공격",
+      hps: 0.32, // 24 / 75
+    },
+  ],
+  [WeaponType.Hammer]: [
+    {
+      name: "hammerNormal",
+      text: "평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "hammerCharging",
+      text: "차지 위주",
+      hps: 0.47, // 35 / 75
+    },
+  ],
+  [WeaponType.Lance]: [
+    {
+      name: "lanceDash",
+      text: "돌진 위주",
+      hps: 1.17, // 88 / 75
+    },
+    {
+      name: "lanceNormalCounter",
+      text: "평타 및 카운터 찌르기 위주",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.GunLance]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.ChargeBlade]: [
+    {
+      name: "chargeBladeGuardPointAmpedDischarge",
+      text: "가포 고출력",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "chargeBladeSuperAmpedDischarge",
+      text: "초고출력 위주",
+      hps: 0.6, // 45 / 75
+    },
+    {
+      name: "chargeBladeAxeModeNormal",
+      text: "도끼모드 평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "chargeBladeOnlySwordMode",
+      text: "오직 검모드 평타",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.LightBowgun]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+};
+
+export const sleepWeaponHitsPerSecond: WeaponTypeHitsPerSecond = {
+  [WeaponType.SwordShield]: [
+    {
+      name: "swordShieldNormal",
+      text: "평타 위주",
+      hps: 1.3, // 100 / 75
+    },
+    {
+      name: "swordShieldBackDashFallBash",
+      text: "백대시 폴배시",
+      hps: 1.07, // 80 / 75
+    },
+  ],
+  [WeaponType.LongSword]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.Bow]: [
+    {
+      name: "bowBlackPao1ChargingSpreadLv3",
+      text: "파오아종활 2차징 확산3렙",
+      hps: 2.67, // 200 / 75
+    },
+    {
+      name: "bowBlackPao1ChargingSpreadLv4",
+      text: "파오아종활 3차징 확산4렙",
+      hps: 2.08, // 156 / 75
+    },
+  ],
+  [WeaponType.GreatSword]: [
+    {
+      name: "greatSwordFastTackleAwakenAttack",
+      text: "빠른 태클 반복후 수면참",
+      hps: 0.47, // 35 / 75
+    },
+    {
+      name: "greatSwordCharging",
+      text: "모아베기",
+      hps: 0.32, // 24 / 75
+    },
+    {
+      name: "greatSwordPerfectEvadeAttack",
+      text: "저스트 회피 공격",
+      hps: 0.32, // 24 / 75
+    },
+  ],
+  [WeaponType.Hammer]: [
+    {
+      name: "hammerNormal",
+      text: "평타 위주",
+      hps: 0.67, // 50 / 75
+    },
+    {
+      name: "hammerCharging",
+      text: "차지 위주",
+      hps: 0.47, // 35 / 75
+    },
+  ],
+  [WeaponType.Lance]: [
+    {
+      name: "lanceDash",
+      text: "돌진 위주",
+      hps: 1.17, // 88 / 75
+    },
+    {
+      name: "lanceNormalCounter",
+      text: "평타 및 카운터 찌르기 위주",
+      hps: 0.87, // 65 / 75
+    },
+  ],
+  [WeaponType.GunLance]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.ChargeBlade]: [
+    {
+      name: "",
+      text: "",
+      hps: 0,
+    },
+  ],
+  [WeaponType.LightBowgun]: [
+    {
+      name: "",
+      text: "수면탄 저회장전 많음(5~6회)",
+      hps: 0.4, // (12+18) / 75
+    },
+    {
+      name: "",
+      text: "수면탄 저회장전 보통(3~4회)",
+      hps: 0.32, // (15+9) / 75
+    },
+    {
+      name: "",
+      text: "수면탄 저회장전 적음(0~2회)",
+      hps: 0.24, // 18 / 75
+    },
+  ],
 };
 // #endregion : weapon data
 
